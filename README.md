@@ -23,7 +23,7 @@
 ## Usage
 
 ```ts
-import { TypedCustomEvent, TypedEventTarget } from 'https://deno.land/x/typed_event_target@1.0.0/mod.ts
+import { TypedCustomEvent, TypedEventTarget } from 'https://deno.land/x/typed_event_target@1.0.1/mod.ts'
 
 type Events = {
     Hi: string
