@@ -1,4 +1,4 @@
-import { assertEquals } from "../deps.ts"
+import { assertEquals, assertThrows } from "../deps.ts"
 import { TypedCustomEvent, TypedEventTarget } from "../mod.ts"
 
 type Events = {
@@ -13,15 +13,15 @@ const e = new TypedEventTarget<Events>()
  */
 // Incorrect Syntax
 // @ts-expect-error reason: test
-e.dispatchEvent(new TypedCustomEvent("Hi", "Hello"))
+assertThrows(() => e.dispatchEvent(new TypedCustomEvent("Hi", "Hello")))
 // @ts-expect-error reason: test
-e.dispatchEvent(new TypedCustomEvent("Hello", true))
+assertThrows(() => e.dispatchEvent(new TypedCustomEvent("Hello", true)))
 
 // Invalid Types
 // @ts-expect-error reason: test
-e.dispatchEvent(new TypedCustomEvent("Hi", 1))
+e.dispatchEvent(new TypedCustomEvent("Hi", {detail: 1}))
 // @ts-expect-error reason: test
-e.dispatchEvent(new TypedCustomEvent("Hello", "Hi"))
+e.dispatchEvent(new TypedCustomEvent("Hello", {detail: "Hi"}))
 // @ts-expect-error reason: test
 e.addEventListener("Hi", (value: string) => value)
 
